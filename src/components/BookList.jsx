@@ -5,7 +5,6 @@ import SingleBook from "./SingleBook";
 class BookList extends Component {
   state = {
     search: "",
-    filteredBooks: null,
   };
 
   handleChange = (e) => {
@@ -14,7 +13,6 @@ class BookList extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.setState({ filteredBooks: this.props.selectedBookList.filter((books) => books.title.includes(this.state.search)) });
   };
 
   render() {
@@ -29,17 +27,13 @@ class BookList extends Component {
               </Form.Group>
             </Form>
           </Col>
-          {this.state.filteredBooks === null
-            ? this.props.selectedBookList.map((book) => (
-                <Col key={book.asin} sm={12} md={4} lg={3} className="mb-3">
-                  <SingleBook book={book} />
-                </Col>
-              ))
-            : this.state.filteredBooks.map((book) => (
-                <Col key={book.asin} sm={12} md={4} lg={3} className="mb-3">
-                  <SingleBook book={book} />
-                </Col>
-              ))}
+          {this.props.selectedBookList
+            .filter((books) => books.title.toLowerCase().includes(this.state.search.toLowerCase()))
+            .map((book) => (
+              <Col key={book.asin} sm={12} md={4} lg={3} className="mb-3">
+                <SingleBook book={book} />
+              </Col>
+            ))}
         </Row>
       </Container>
     );
