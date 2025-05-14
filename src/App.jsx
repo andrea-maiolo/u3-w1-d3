@@ -4,7 +4,7 @@ import Mynav from "./components/Mynav";
 import { Container } from "react-bootstrap";
 import Myfooter from "./components/Myfooter";
 import Welcome from "./components/Welcome";
-import AllTheBooks from "./components/AllTheBooks";
+import BookList from "./components/BookList";
 
 class App extends Component {
   render() {
@@ -12,7 +12,7 @@ class App extends Component {
       <Container>
         <Mynav />
         <Welcome />
-        <AllTheBooks />
+        <BookList />
         <Myfooter />
       </Container>
     );
