@@ -1,11 +1,20 @@
 import { Component } from "react";
-import { Col, Card, Badge } from "react-bootstrap";
+import { Card, Badge } from "react-bootstrap";
 
 class SingleBook extends Component {
+  state = {
+    selected: false,
+  };
+
+  handleSelected = () => {
+    this.setState({ selected: this.state.selected ? false : true });
+    console.log(this.state.selected);
+  };
+
   render() {
     return (
-      <Card className="h-100">
-        <Card.Img variant="top" src={this.props.book.img} alt={this.props.book.title} className="img-fluid h-75" />
+      <Card className={`h-100 ${this.state.selected ? "border border-danger border-5" : ""}`}>
+        <Card.Img onClick={this.handleSelected} variant="top" className="img-fluid h-75 myImg" src={this.props.book.img} alt={this.props.book.title} />
         <Card.Body className="d-flex flex-column">
           <Card.Title className="text-truncate">{this.props.book.title}</Card.Title>
           <Card.Text>
